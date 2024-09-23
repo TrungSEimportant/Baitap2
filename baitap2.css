@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #79CDCD;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Định dạng tiêu đề */
+h2 {
+    color: #333;
+}
+
+/* Định dạng các input */
+input[type="text"],input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Định dạng nút bấm */
+button {
+    background-color: whitesmoke;
+    color: red;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+button.show:hover , button.save:hover{
+    background-color: #218838;
+}
+button.reset:hover{
+    background-color: yellow;
+}
+
+/* Định dạng bảng */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.totalRow {
+    font-weight: bold;
+    background-color: #dff0d8; /* Màu nền cho hàng tổng */
+}
+
+#total {
+    color: green; /* Màu sắc cho tổng tiền */
+}

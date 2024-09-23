@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Tập 2</title>
+    <link rel="stylesheet" href="baitap2.css">
+</head>
+<body>
+    <h2>Fullname_Customer</h2>
+    <input type="text" id="fname">
+    <br>
+    <h2>ID_Pro</h2>
+    <input type="number" id="number">
+    <br>
+    <h2>Name_Pro</h2>
+    <input type="text" id="name">
+    <br>
+    <h2>Quantity_Pro</h2>
+    <input type="number" id="qty">
+    <br>
+    <h2>Price_Pro</h2>
+    <input type="number" id="pri">
+    <br>
+    <p>
+        <button class="save" type="button" onclick="save()">Save</button>
+        <button class="show" type="button" onclick="show()">Show</button>
+        <button class="reset" type="button" onclick="reset()">Reset</button>
+    </p>
+    <table class="tb">
+        <thead>
+            <tr>
+                <th>Auto_Increment</th>
+                <th>Fullname_Customer</th>
+                <th>ID_Pro</th>
+                <th>Name_Pro</th>
+                <th>Quantity_Pro</th>
+                <th>Price_Pro</th>
+                <th>Discount</th>
+                <th>Amount</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+             <!-- thêm ở đây -->
+             <tr id="totalRow">
+                <td colspan="8">Total</td>
+                <td id="total">0</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+<script>
+    var arr = [];
+    var discount_Rate = 0.3; // Giảm giá 30%
+    var total = 0;
+
+    function save() {
+        var a = {
+            fname: document.getElementById('fname').value,
+            id: document.getElementById('number').value, 
+            name: document.getElementById('name').value,
+            qty: parseFloat(document.getElementById('qty').value), // Chuyển đổi sang số
+            pri: parseFloat(document.getElementById('pri').value)  // Chuyển đổi sang số
+        };
+        console.log(a);
+        arr.push(a);
+    }
+
+    function show() {
+        var sh = '';
+        total = 0;
+        for (var i = 0; i < arr.length; i++) {
+            var qty = arr[i].qty;
+            var pri = arr[i].pri;
+            var discount = pri * discount_Rate; // Tính discount
+            var amount = (pri - discount) * qty; // Tính amount
+
+            sh += "<tr>";
+            sh += "<td>" + (i + 1) + "</td>"; // Thay i thành (i + 1) để đếm từ 1
+            sh += "<td>" + arr[i].fname + "</td>";
+            sh += "<td>" + arr[i].id + "</td>";
+            sh += "<td>" + arr[i].name + "</td>";
+            sh += "<td>" + qty + "</td>";
+            sh += "<td>" + pri + "</td>";
+            sh += "<td>" + discount.toFixed(2) + "</td>";
+            sh += "<td>" + amount.toFixed(2) + "</td>";
+            sh += "</tr>";
+
+            total += amount; // Cộng dồn vào total
+        }
+
+        sh += "<tr class='totalRow'>";
+        sh += "<td colspan='8'>Total</td>";
+        sh += "<td id='total'>" + total.toFixed(2) + "</td>";
+        sh += "</tr>";
+        
+        document.getElementById('tbody').innerHTML = sh; // Cập nhật bảng
+    }
+
+    function reset() {
+        document.getElementById('fname').value = '';
+        document.getElementById('number').value = '';
+        document.getElementById('name').value = '';
+        document.getElementById('qty').value = '';
+        document.getElementById('pri').value = '';
+        arr = []; // Xóa danh sách
+        document.getElementById('tbody').innerHTML = ''; // Xóa bảng
+        total = 0; // Đặt lại tổng
+    }
+</script>
+</html>
